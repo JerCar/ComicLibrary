@@ -1,45 +1,44 @@
 
 package qar.comiclibrary;
 
-/**
- * Jer's Comic Library
- * author: Jeremy Carrothers
- * version: 1.0
- * 
- * SuperClass for all comics 
- */
+import java.io.IOException;
+import java.util.Scanner;
 
+/**
+ * @author Jeremy Carrothers
+ * @version 1.0
+ * This file runs the app
+ */
 public class Comic {
     
-    private String comicName;
-    private String comicSeries;
-    private int comicEdition;
-    private String pubDate;
-    private int isbn;
+    private static Scanner scanner = new Scanner(System.in);
     
-
-    public Comic(String cName, String cSeries, int cEdition, int isbNumber, String publishedDate) {
-        this.comicName = cName;
-        this.comicSeries = cSeries;
-        this.comicEdition = cEdition;
-        this.isbn = isbNumber;
-        this.pubDate = publishedDate;
-    }
-    
-    public String getComicName() { return comicName; }
-    public String getComicSeries() { return comicSeries; }
-    public int getComicEdition() { return comicEdition; }
-    public int getIsbn() { return isbn; }
-    
-    @Override
-    public String toString() {
-        return "Name: " + this.comicName + ", Series: " + this.comicSeries + " Comic Edition: " + this.comicEdition;
-    }
-    
-    
-    public static void main(String[] args) {
-    
-        Comic comic = new Comic("Summer Special", "The Punisher", 2, 333333333, "Mar 15, 2021");
-        System.out.println(comic.toString());
-    }
+    public static void main(String[] args) throws IOException {
+        
+        
+        ComicAdder comicAdder = new ComicAdder();
+        FileReader fileReader = new FileReader();
+        //Comicbook tempComic = comicAdder.getNewComic();
+        
+        
+        while (true) {
+            System.out.println("Enter new comic? (y/n): ");
+            String userAnswer = scanner.next();
+            
+            if (userAnswer.equals("y")) {
+                Comicbook tempComic = comicAdder.getNewComic();
+                FileWriter fileWriter = new FileWriter();
+                fileWriter.writeComic(tempComic);            
+                
+            }
+            
+            else { break; }        
+        } 
+        
+    fileReader.readComicFile();
+        for (Object comicList : FileReader.comicList) {
+            System.out.println(comicList);
+        
+        }        
+    }    
 }

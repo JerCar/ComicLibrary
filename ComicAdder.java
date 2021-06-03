@@ -22,18 +22,22 @@ public class ComicAdder {
     
     Scanner scanner = new Scanner(System.in);
     
-    public void getNewComic() {
-        System.out.println("Enter the name of the comic: ");
+    public Comicbook getNewComic() {
+        System.out.println("Enter comic name: ");
         comicName = scanner.nextLine();
-        System.out.println("Enter the name of the comic series: ");
+        System.out.println("Enter comic series: ");
         comicSeries = scanner.nextLine();
-        System.out.println("Enter the edition: ");
+        System.out.println("Enter series number: ");
         comicEdition = scanner.nextLine();
         System.out.println("Enter the publication date: ");
         pubDate = scanner.nextLine();
         System.out.println("Enter the ISBN number: ");
-        isbn = scanner.nextInt();        
-    }
-    
+        isbn = scanner.nextInt();
+        scanner.nextLine();
+        
+        Comicbook comicBook = new Comicbook(comicName, comicSeries, comicEdition, pubDate, isbn);
+        
+        return comicBook;
+    }   
     
 }
