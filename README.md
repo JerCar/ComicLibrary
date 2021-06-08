@@ -5,6 +5,9 @@ Throughout COVID lockdowns I've developed a love for old comics. I never read on
 Just in development stages, barely started.
 
 ComicAdder Class handles functionality around adding a new comic to the library
+
 Comicbook Class is the superclass for all comics created
+
 FileWriter Class writes the files to disk (csv)
+
 File Reader reads the comiclibrary file(csv)
