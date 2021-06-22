@@ -2,6 +2,8 @@
 package qar.comiclibrary;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -11,34 +13,56 @@ import java.util.Scanner;
  */
 public class Comic {
     
-    private static Scanner scanner = new Scanner(System.in);
+    // Scanner scanner = new Scanner(System.in);
+    public static ArrayList comicList = new ArrayList<Comicbook>();
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         
-        
+        Scanner scanner = new Scanner(System.in);
         ComicAdder comicAdder = new ComicAdder();
-        FileReader fileReader = new FileReader();
-        //Comicbook tempComic = comicAdder.getNewComic();
+        ComicWriter comicWriter = new ComicWriter();
+        ComicReader comicReader = new ComicReader();
         
+        String userChoice;
+        
+        comicReader.readComics();
+        Collections.sort(comicList);
         
         while (true) {
-            System.out.println("Enter new comic? (y/n): ");
-            String userAnswer = scanner.next();
+            System.out.println();
+            System.out.println("+++++++++++++++++++++++");
+            System.out.println("Jer's Comic Library");
+            System.out.println("++++++ Main Menu ++++++");
+            System.out.println(" -->   (a)dd comic");
+            System.out.println(" -->   (p)rint comics in collection");            
+            System.out.println(" -->   (e)xit");
+            System.out.println("What would you like to do?: ");                   
+            userChoice = scanner.next();
+            scanner.nextLine();
             
-            if (userAnswer.equals("y")) {
-                Comicbook tempComic = comicAdder.getNewComic();
-                FileWriter fileWriter = new FileWriter();
-                fileWriter.writeComic(tempComic);            
+            
+        
+            if (userChoice.equals("a")) {
                 
+                Comicbook tempComic = comicAdder.getNewComic();
+                // FileWriter fileWriter = new FileWriter();e
+                Comic.comicList.add(tempComic);            
             }
             
-            else { break; }        
-        } 
-        
-    fileReader.readComicFile();
-        for (Object comicList : FileReader.comicList) {
-            System.out.println(comicList);
-        
-        }        
+            else if (userChoice.equals("p")) {
+                                
+                System.out.println();
+                
+                for (Object comic : comicList) {
+                    System.out.println(comic);        
+                }
+            }
+            
+            else if (userChoice.equals("e")) {
+                comicWriter.writeComics();
+                System.out.println("+++ Good bye +++");
+                break;
+            }
+        }
     }    
 }

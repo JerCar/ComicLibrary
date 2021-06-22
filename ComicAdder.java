@@ -16,26 +16,21 @@ public class ComicAdder {
     
     String comicName;
     String comicSeries;
-    String comicEdition;
-    String pubDate;
-    int isbn;
+    String comicSeriesNumber;
+    
     
     Scanner scanner = new Scanner(System.in);
     
     public Comicbook getNewComic() {
-        System.out.println("Enter comic name: ");
-        comicName = scanner.nextLine();
         System.out.println("Enter comic series: ");
         comicSeries = scanner.nextLine();
+        System.out.println("Enter comic name: ");
+        comicName = scanner.nextLine();
         System.out.println("Enter series number: ");
-        comicEdition = scanner.nextLine();
-        System.out.println("Enter the publication date: ");
-        pubDate = scanner.nextLine();
-        System.out.println("Enter the ISBN number: ");
-        isbn = scanner.nextInt();
-        scanner.nextLine();
+        comicSeriesNumber = scanner.nextLine();
         
-        Comicbook comicBook = new Comicbook(comicName, comicSeries, comicEdition, pubDate, isbn);
+                
+        Comicbook comicBook = new Comicbook(comicSeries, comicName, comicSeriesNumber);
         
         return comicBook;
     }   

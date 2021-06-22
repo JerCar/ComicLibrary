@@ -9,33 +9,40 @@ package qar.comiclibrary;
  SuperClass for all comics 
  */
 
-public class Comicbook {
+import java.io.Serializable;
+
+public class Comicbook implements Comparable<Comicbook>, Serializable {
     
     private String comicName;
     private String comicSeries;
-    private String comicEdition;
-    private String pubDate;
-    private int isbn;
+    private String comicSeriesNumber;
+    
     private static final String NEW_LINE = System.lineSeparator();
     
 
-    public Comicbook(String cName, String cSeries, String cEdition, String publishedDate, int isbNumber) {
+    public Comicbook(String cName, String cSeries, String cEdition) {
         this.comicName = cName;
         this.comicSeries = cSeries;
-        this.comicEdition = cEdition;
-        this.isbn = isbNumber;
-        this.pubDate = publishedDate;
+        this.comicSeriesNumber = cEdition;
+       
     }
     
     public String getComicName() { return comicName; }
     public String getComicSeries() { return comicSeries; }
-    public String getComicEdition() { return comicEdition; }
-    public int getIsbn() { return isbn; }
+    public String getComicEdition() { return comicSeriesNumber; }
+    
+    
+    @Override
+    public int compareTo(Comicbook comicbook) {
+        
+        if (getComicSeries() == null || comicbook.getComicSeries() == null) { return 0; }
+        return getComicSeries().compareTo(comicbook.getComicSeries());
+    }
     
     @Override
     public String toString() {
-        //return "Name: " + this.comicName + ", Series: " + this.comicSeries + " Comic Edition: " + this.comicEdition + "Publication Date: " + pubDate + "ISBN: " + isbn;
-        return this.comicName + ", " + this.comicSeries + ", " + this.comicEdition + ", " + this.pubDate + ", " + this.isbn + NEW_LINE;
+        //return "Name: " + this.comicName + ", Series: " + this.comicSeries + " Comic Edition: " + this.comicSeriesNumber+ "Publication Date: " + pubDate + "ISBN: " + isbn;
+        return this.comicName + ", " + this.comicSeries + ", " + this.comicSeriesNumber; //+ NEW_LINE;
     } 
    
 }
